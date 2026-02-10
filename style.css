@@ -1,0 +1,207 @@
+:root{
+  --bg1:#ffffff;
+  --bg2:#ffffff;
+  --card: rgba(255,255,255,.82);
+  --card2: rgba(255,255,255,.65);
+  --text:#2b2b2b;
+  --pink:#ff1493;
+  --pink2:#ff4db8;
+  --shadow: 0 18px 50px rgba(0,0,0,.12);
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,20,147,.12) 0%, rgba(255,255,255,0) 38%),
+    radial-gradient(circle at 90% 85%, rgba(255,20,147,.10) 0%, rgba(255,255,255,0) 42%),
+    linear-gradient(180deg, #ffffff, #ffffff);
+  overflow:hidden;
+}
+
+/* ===================== */
+/* Main Card */
+/* ===================== */
+.container{
+  position:relative;
+  width:min(560px, 92vw);
+  padding:26px 22px 22px;
+  border-radius:24px;
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.78));
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,.6);
+  backdrop-filter: blur(10px);
+  text-align:center;
+}
+
+/* ===================== */
+/* 🧸 3D TEDDY */
+/* ===================== */
+.teddy-3d{
+  width:170px;
+  margin: 6px auto 8px;
+  perspective: 900px;
+}
+
+.teddy-3d img{
+  width:100%;
+  display:block;
+  transform-style: preserve-3d;
+  transform: rotateX(12deg) rotateY(-12deg);
+  transition: transform .6s ease, filter .6s ease;
+  filter: drop-shadow(0 18px 28px rgba(0,0,0,.28));
+  user-select:none;
+}
+
+.teddy-3d img:hover{
+  transform: rotateX(0deg) rotateY(0deg) scale(1.06);
+}
+
+/* ===================== */
+
+.name{
+  margin:10px 0 6px;
+  font-size: clamp(22px, 3.6vw, 28px);
+  font-weight: 800;
+}
+
+.question{
+  margin: 0 0 18px;
+  font-size: clamp(16px, 2.8vw, 18px);
+  opacity:.95;
+}
+
+/* OLD teddyImg disabled */
+.teddyImg{
+  display:none;
+}
+
+/* ===================== */
+/* Buttons */
+/* ===================== */
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap: 12px;
+  margin-top: 8px;
+  position: relative;
+  min-height: 56px;
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+/* YES ke baad hide */
+.buttons.hide{
+  opacity:0;
+  transform: scale(.9);
+  pointer-events:none;
+}
+
+button{
+  border:0;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: 800;
+  border-radius: 999px;
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+  user-select:none;
+}
+
+button:active{
+  transform: translateY(1px) scale(.99);
+}
+
+#yesBtn{
+  background: linear-gradient(135deg, var(--pink), var(--pink2));
+  color:white;
+}
+
+#yesBtn:hover{
+  transform: translateY(-1px) scale(1.05);
+}
+
+#noBtn{
+  background: rgba(255,255,255,.9);
+  color: #333;
+  border: 1px solid rgba(0,0,0,.08);
+  position: relative;
+}
+
+/* ===================== */
+/* Result */
+/* ===================== */
+.result{
+  display:none;
+  margin-top: 18px;
+  padding: 16px 14px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.72);
+}
+
+.result.show{
+  display:block;
+  animation: pop .25s ease-out;
+}
+
+@keyframes pop{
+  from{ transform: translateY(8px); opacity:0; }
+  to{ transform: translateY(0); opacity:1; }
+}
+
+/* ===================== */
+/* Floating Hearts */
+/* ===================== */
+.hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.heart{
+  position:absolute;
+  font-size:18px;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp{
+  from{ transform: translateY(0) scale(1); opacity:0; }
+  15%{ opacity:1; }
+  to{ transform: translateY(-120vh) scale(var(--scale)); opacity:0; }
+}
+
+/* ===================== */
+/* 🌹 ROSE PETAL RAIN */
+/* ===================== */
+.petal{
+  position: fixed;
+  top: -40px;
+  pointer-events: none;
+  animation: petalFall linear forwards;
+  z-index: 999;
+}
+
+@keyframes petalFall{
+  from{
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  to{
+    transform: translateY(120vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ===================== */
+.hint{
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: .75;
+}
